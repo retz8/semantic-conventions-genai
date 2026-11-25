@@ -1072,15 +1072,17 @@ it's RECOMMENDED to:
 
 ## Recording MCP transport
 
-The following table shows how to capture MCP transport and can be used be telemetry
-consumers to deduce transport type.
+The following table shows which network attribute values to record for each
+MCP transport.
 
-| MCP transport                                 | `network.transport` attribute          | `network.protocol.name` attribute | Comments                                                         |
-| :-------------------------------------------- | :------------------------------------- | :-------------------------------- | :--------------------------------------------------------------- |
-| stdio                                         | `pipe`                                 |                                   |                                                                  |
-| Streamable HTTP or HTTP with SSE (deprecated) | `tcp` (or `quic`)                      | `http`                            | These attributes don't distinguish Streamable HTTP from HTTP with SSE |
-| Custom: websockets                            | `tcp` (or another applicable protocol) | `websocket`                       |                                                                  |
-| Custom: gRPC                                  | `tcp` (or another applicable protocol) | `http`                            | See [gRPC conventions](https://github.com/open-telemetry/semantic-conventions/blob/v1.45.0/docs/rpc/grpc.md) for additional details |
+| MCP transport                                 | `network.transport` attribute          | `network.protocol.name` attribute |
+| :-------------------------------------------- | :------------------------------------- | :-------------------------------- |
+| stdio                                         | `pipe`                                 |                                   |
+| Streamable HTTP or HTTP with SSE (deprecated) | `tcp` (or `quic`)                      | `http`                            |
+| Custom: websockets                            | `tcp` (or another applicable protocol) | `websocket`                       |
+| Custom: [gRPC][grpc-conventions]               | `tcp` (or another applicable protocol) | `http`                            |
+
+[grpc-conventions]: https://github.com/open-telemetry/semantic-conventions/blob/v1.45.0/docs/rpc/grpc.md
 
 Note: Applications may enable instrumentation for the underlying application protocol
 like HTTP (when applicable) alongside MCP instrumentation to capture additional
